@@ -1,0 +1,47 @@
+{% extends 'happy_hoe/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+<style>
+
+    footer {
+        background: black;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        color: white;
+        position: fixed;
+        padding: 10px 0;
+        font-size: 14px;
+    }
+
+    .scrollable-vertical {
+    max-height: 500px;
+    overflow-y: auto;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+</style>
+
+{% block content %}
+<br><br>
+ <!--this is a container that contains the form-->
+<div class="container scrollable-vertical">
+    <div class="body container-fluid container login">
+
+        <div class="container container-fluid">
+            <form id="form" method="POST" class="loginform" style="border-radius: 25px; border: 2px solid white;  padding: 20px; color: black; width: 400px;height: 350px; ">
+                {% csrf_token %}
+                {{form | crispy}}
+                <br> <br>
+                <!--my submit button-->
+                <button type="submit" name="Login" class="btn btn-info btn-danger btn-block">Login</button>
+                <br>
+
+            </form>
+        </div>
+    </div>
+</div>
+<br>
+{% endblock %}

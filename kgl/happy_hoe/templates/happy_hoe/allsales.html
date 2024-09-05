@@ -1,0 +1,60 @@
+{% extends 'happy_hoe/base.html' %}
+
+{% block content %}
+<br>
+
+<div class="container">
+  <h1 class="text-center" style="font-family: 'Courier New, Courier, monospace;">TOTAL SALES MADE</h1>
+  <br>
+  <div class="table-container" style="border: 2px solid #dee2e6; border-radius: 10px; padding: 20px;">
+    <table class="table table-bordered" style="border-radius: 10px; overflow: hidden;">
+      <thead style="background-color: whitesmoke; color: black; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);">
+        <tr>
+          <th scope="col">Total Amount Received</th>
+          <th scope="col">Total Change Given</th>
+          <th scope="col">Net Amount</th>
+        </tr>
+      </thead>  
+      <tbody style="text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);">
+        <tr>    
+          <td>UGX {{ total }}</td>
+          <td>UGX {{ change }}</td>
+          <td>UGX {{ net_cash }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<br>
+
+<div class="container">
+  <div class="table-container" style="border: 2px solid #dee2e6; border-radius: 10px; padding: 20px;">
+    <table class="table table-bordered table-striped" style="border-radius: 10px; overflow: hidden;">
+      <thead style="background-color: whitesmoke; color: black; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);">
+        <tr>
+          <th scope="col">Customer Name</th>
+          <th scope="col">Item Bought</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Unit Price (UGX)</th>
+          <th scope="col">Total Cost</th>
+          <th scope="col">Amount Paid</th>
+          <th scope="col">Change Collected</th>
+        </tr>
+      </thead>
+      <tbody style="text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);">
+        {% for sale in sales %}
+        <tr>    
+          <td>{{ sale.issued_to | title }}</td>
+          <td>{{ sale.item | title }}</td>
+          <td>{{ sale.quantity }}</td>
+          <td>UGX {{ sale.unit_price }}</td>
+          <td>UGX {{ sale.get_total }}</td>
+          <td>UGX {{ sale.amount_received }}</td>
+          <td>UGX {{ sale.get_change }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

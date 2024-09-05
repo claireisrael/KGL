@@ -1,0 +1,56 @@
+{% extends 'happy_hoe/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<br/>
+
+<div class="container" style="max-width: 100%; height: 500px; overflow-y: auto;">
+  <form method="POST" action="">
+    <h1 class="text-center">SALES FORM</h1>
+    <br>
+    {% csrf_token %}
+    {{ sales_form|crispy }}
+    <input type="submit" class="btn btn-secondary btn-block" value="Submit">
+  </form>
+</div>
+
+<style>
+  /* Custom styles for the form container */
+  .container {
+    max-width: 100%;
+    height: 500px; /* Set a fixed height for the container */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding-right: 15px; /* Ensure padding on the right */
+  }
+
+  /* Hide scrollbar */
+  .container::-webkit-scrollbar {
+    display: none; /* Hide scrollbar in WebKit-based browsers */
+  }
+
+  .container {
+    -ms-overflow-style: none;  /* Hide scrollbar in IE and Edge */
+    scrollbar-width: none;  /* Hide scrollbar in Firefox */
+  }
+
+  /* Reduce space between form fields */
+  .form-group {
+    margin-bottom: 10px; /* Adjust spacing between fields */
+  }
+
+  /* Custom styles for the form */
+  form {
+    padding: 20px;
+    background-color: white;
+    border-radius: 15px;
+  }
+
+  /* Adjust button styling */
+  .btn-secondary {
+    width: 10%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+  }
+</style>
+{% endblock %}

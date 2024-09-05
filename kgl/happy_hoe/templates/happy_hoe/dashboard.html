@@ -1,0 +1,165 @@
+{% extends 'happy_hoe/base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+  .scrollable-container {
+    max-height: 80vh;
+    overflow: auto;
+    border-radius: 0.8rem;
+    padding: 1rem;
+    margin: 0 auto;
+    width: 90%;
+    background-color: #f9f9f9;
+  }
+
+  .scrollable-container::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+  }
+
+  .scrollable-container {
+    scrollbar-width: none;
+  }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    align-items: start;
+  }
+
+  .grid-item {
+    background: #fff;
+    border-radius: 0.8rem;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .table_header {
+    background-color: white;
+    padding: 0.8rem;
+    text-align: center;
+    border-top-left-radius: 0.8rem;
+    border-top-right-radius: 0.8rem;
+    font-weight: bolder;
+    font-family: 'Courier New', Courier, monospace;
+  }
+
+  .search-container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem 0;
+    
+  }
+
+  .search-btn {
+    background-color:rgb(157, 189, 255);
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-family: 'Courier New', Courier, monospace;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .search-btn:hover {
+    background-color: #0056b3;
+
+  }
+
+  .btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .btn-primary {
+    background-color: rgb(255, 215, 196);
+  }
+
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+
+  .btn-danger {
+    background-color: #dc3545;
+  }
+
+  .btn-danger:hover {
+    background-color: #c82333;
+  }
+
+  .btn-success {
+    background-color: rgb(157, 189, 255);
+  }
+
+  .btn-success:hover {
+    background-color: #21883;
+  }
+
+  .button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+
+  .button-group a {
+    flex: 1;
+    margin: 0 0.25rem;
+  }
+
+  .delete-button {
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+</style>
+
+<br><br>
+<div class="scrollable-container">
+  <div class="table_header">
+    <h1>STOCK AVAILABLE</h1>
+  </div>
+
+  <div class="search-container">
+    <form method="GET" action="">
+      {{ product_filters.form }}
+      <button type="submit" class="search-btn">Search</button>
+    </form>
+  </div>
+
+  <div class="grid-container">
+    {% for product in products %}
+    <div class="grid-item">
+      <h2>{{ product.stock_name }}</h2>
+      <p><strong>Quantity:</strong> {{ product.total_quantity }}</p>
+      <p><strong>Unit Price (UGX):</strong> UGX {{ product.unit_price }}</p>
+      <p><strong>Branch Name:</strong> {{ product.stock_branch }}</p>
+      <div class="button-group">
+        <a href="{% url 'add_stock' product.id %}">
+          <button class="btn btn-success">Update</button>
+        </a>
+        <a href="{% url 'product_detail' product.id %}">
+          <button class="btn btn-primary">Sale Item</button>
+        </a>
+      </div>
+      <div class="delete-button">
+        <a href="{% url 'delete_detail' product.id %}">
+          <button class="btn btn-danger">Delete Item</button>
+        </a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,89 @@
+{% extends 'happy_hoe/base.html' %}
+{% block content %}
+<style>
+  .card-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    background-color: #fff;
+  }
+
+  .card-header {
+    font-size: 1.5rem;
+    font-weight: bold;
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-bottom: 1px solid #dee2e6;
+    border-radius: 10px 10px 0 0;
+    text-align: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold',sans-serif;
+  }
+
+  .card-body {
+    padding: 20px;
+  }
+
+  .card-body p {
+    font-size: 1.2rem;
+    margin: 10px 0;
+  }
+
+  .card-body p strong {
+    color: #28a745;
+  }
+
+  .btn-green {
+    background-color: #28a745;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 20px;
+  }
+
+  .btn-green:hover {
+    background-color: #218838;
+  }
+
+  .action-buttons {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .action-buttons .btn {
+    margin-right: 10px;
+  }
+</style>
+
+<br><br>
+
+<!-- Card Layout for Product Details -->
+<div class="container">
+  <div class="card-container">
+    <div class="card-header">
+      Product Details
+    </div>
+    <div class="card-body">
+      <p><strong>Item Name:</strong> {{ product.stock_name }}</p>
+      <p><strong>Unit Price:</strong> UGX {{ product.unit_price }}</p>
+      <p><strong>Branch Name:</strong> {{ product.stock_branch }}</p>
+      <p><strong>Total Quantity:</strong> {{ product.total_quantity }}</p>
+      
+      <!-- Action Buttons -->
+      <div class="action-buttons">
+        <a href="{% url 'issue_item' product.id %}" class="btn btn-primary">Sale Item</a>
+      </div>
+
+      <!-- Back to Dashboard Button -->
+      <div class="text-center">
+        <a href="{% url 'dashboard' %}" class="btn-green">Back to Dashboard</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

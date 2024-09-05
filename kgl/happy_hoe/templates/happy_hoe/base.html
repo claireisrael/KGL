@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>Happy Hoe Grocery</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <!-- Raleway font -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" />
+    <!-- Montserrat font -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <style>
+        /* Sticky footer styles */
+        html {
+            position: relative;
+            min-height: 100%;
+        }
+
+        body {
+            margin-bottom: 60px; /* Space for the footer */
+            position: relative;
+            font-family: 'Raleway', sans-serif;
+        }
+
+        .navbar {
+            background-color: rgb(157, 189, 255); /* Dark Gray */
+            padding: 10px 20px;
+        }
+
+        .navbar .nav-link, .navbar-brand {
+            color: white !important;
+            font-family: 'Dancing Script', cursive;
+
+        }
+
+        .navbar .nav-link:hover {
+            color: rgb(118, 149, 255) !important; /* Yellow color on hover */
+          }
+
+        .navbar-brand img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 60px; /* Footer height */
+            line-height: 60px; /* Vertically center the text */
+            background-color: rgb(157, 189, 255); /* Dark Gray */
+            color: white;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .navbar .nav-link {
+                font-size: 14px;
+            }
+
+            .footer {
+                font-size: 14px;
+                height: 50px; /* Adjust footer height for smaller screens */
+                line-height: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <!-- Logo in the Navbar -->
+        <a class="navbar-brand" href="#">
+            <img src="{% static 'images/logo.png' %}" alt="Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon" style="color: white;"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <!-- Menu items for authenticated users only -->
+            {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'allsales' %}">All Sales</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+    </nav>
+
+    <!-- Content block -->
+    {% block content %}
+    <!-- the content in other pages will be going here -->
+    {% endblock %}
+  
+    <!-- Sticky Footer -->
+    <footer class="footer">
+        <div class="container">
+            <span>&copy; Happy Hoe Grocery - Designed by Claire Namagala</span>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgzQ1P0xSU9bJgiBRLh1XjRZMQFJW6w6mOjpknOLoEb60z2IMd" crossorigin="anonymous"></script>
+</body>
+</html>

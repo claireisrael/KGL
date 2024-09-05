@@ -1,0 +1,110 @@
+{% extends 'happy_hoe/base.html' %}
+{% load static %}
+
+{% block content %}
+<br /><br>
+
+<!-- Bouncing Header Section -->
+<h1 class="bouncing-header text-center mb-4" style="color: black;">
+    ALL RECEIPTS
+</h1>
+
+<!-- Scrollable Receipts Grid -->
+<div class="container">
+  <div class="row all_receipts" style="max-height: 600px; overflow-y: auto; padding-right: 15px;">
+    {% for sale in sales %}
+    <!-- Receipt Card -->
+    <div class="col-lg-4 col-md-6 mb-3">
+      <div class="card" style="border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transition: transform 0.2s;">
+        <div class="card-body">
+          <h3 class="card-title" style="color: #28a745;">Customer: {{ sale.issued_to | title }}</h3>
+          <h6 class="card-text"><strong>Item:</strong> {{ sale.item }}</h6>
+          <h6 class="card-text"><strong>Amount Paid:</strong> UGX {{ sale.amount_received }}</h6>
+          <h6 class="card-text"><strong>Quantity:</strong> {{ sale.quantity }}</h6>
+          <h2 style="color: #dc3545;"><strong>Total Price:</strong> UGX {{ sale.get_total }}</h2>
+          <div class="d-flex justify-content-between align-items-center">
+            <h6 class="card-text" style="color: #ffc107;"><strong>Change Collected:</strong> UGX {{ sale.get_change }}</h6>
+            <a href="{% url 'all_receipts' sale.id %}">
+              <button class="btn btn-primary">Receipt</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Custom Styles -->
+<style>
+  /* Bouncing animation for the header */
+  .bouncing-header {
+    font-size: 2.5rem;
+    animation: bounce 2s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-30px);
+    }
+    60% {
+      transform: translateY(-15px);
+    }
+  }
+
+  /* Hide scrollbar for WebKit browsers */
+  .all_receipts::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for Firefox */
+  .all_receipts {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+  /* Hover effect for receipt cards */
+  .card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  }
+
+  /* Custom button styles */
+  .btn-primary {
+    background-color: #28a745;
+    border-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s, border-color 0.3s;
+  }
+
+  .btn-primary:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .all_receipts {
+      max-height: 400px;
+    }
+    
+    .card-title {
+      font-size: 1.5rem;
+    }
+    
+    .card-text {
+      font-size: 1rem;
+    }
+    
+    h2 {
+      font-size: 1.25rem;
+    }
+  }
+</style>
+
+{% endblock %}

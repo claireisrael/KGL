@@ -1,0 +1,201 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Hoe Grocery Ltd. - Stock Levels</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: lavender;
+            background: url('{% static "images/stock.jpg" %}') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Ensure content is spread across the height */
+        }
+
+        .navbar {
+            background-color: rgb(118, 149, 255);
+            padding: 0.5em 1em;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .navbar .navbar-brand img {
+            height: 60px;
+            width: auto;
+            border-radius: 10%;
+        }
+
+        .navbar-nav .nav-link {
+            color: white;
+            padding: 0.5em 1em;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .navbar-nav .nav-link:hover {
+            background-color: #004d99;
+            border-radius: 5px;
+        }
+
+        .navbar .btn-login {
+            background-color: #4CAF50;
+            color: white;
+            padding: 0.5em 1.5em;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .navbar .btn-login:hover {
+            background-color: #45a049;
+        }
+
+        .content {
+            flex: 1;
+            margin-top: 80px;
+            padding: 2em;
+            overflow-y: auto; /* Enable scrolling if content overflows */
+        }
+
+        .stock-levels {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            font-family: 'Dancing Script', cursive;
+
+        }
+
+        .stock-levels h1 {
+            color: black;
+            text-align: center;
+            margin-bottom: 1em;
+        }
+
+        .stock-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .stock-table th,
+        .stock-table td {
+            padding: 1em;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .stock-table th {
+            background-color: lightsteelblue;
+            color: white;
+            font-weight: bold;
+        }
+        .footer-container {
+    background-color:  rgb(118, 149, 255); /* Match navbar color */
+    padding: 1.5em; /* Increased padding for a larger footer */
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+ 
+   .footer {
+    color: black;
+    font-size: 0.9em;
+    white-space: nowrap; 
+    overflow: hidden; 
+    animation: scrollText 25s linear infinite;
+}
+
+@keyframes scrollText {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">
+            <img src="{% static 'images/logo.png' %}" alt="Happy Hoe Grocery Ltd. Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+
+                <li class="nav-item">
+                    <a class="btn-login" href="{% url 'login' %}">Login</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="content">
+        <div class="stock-levels">
+            <h1>Stock Levels</h1>
+            <table class="stock-table">
+                <thead>
+                    <tr>
+                        <th>Stock Name</th>
+                        <th>Tonnage (kg)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Beans</td>
+                        <td>2000</td>
+                    </tr>
+                    <tr>
+                        <td>Grain Maize</td>
+                        <td>1500</td>
+                    </tr>
+                    <tr>
+                        <td>Cowpeas</td>
+                        <td>1000</td>
+                    </tr>
+                    <tr>
+                        <td>G.nuts</td>
+                        <td>1000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer-container">
+        <footer class="footer">
+            &copy; 2024 Happy Hoe Grocery Ltd. Designed by Claire Namagala
+        </footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

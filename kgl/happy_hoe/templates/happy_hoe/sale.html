@@ -1,0 +1,38 @@
+{% extends 'happy_hoe/base.html'%} {% block content%}
+<br></br>
+
+<div class = "container">
+    <a href="" ><input type="submit" value="Sale Item" class="btn btn-secondary" btn type="button"/></a>
+    <a href="" ><input type= "submit" value="Add to Stock" class="btn btn-secondary btn" type="button"/></a>
+</div>
+
+<br></br>
+<div class = "container">
+  <table class="table">
+    <thead class="thead-blue">
+      <tr>
+        <th scope="col">Item Name</th>
+        <th scope="col">Tonnage</th>
+        <th scope="col">Price</th>
+        <th scope="col">Cost price</th> 
+        <th scope="col">Details</th>
+ 
+
+
+
+
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr>    
+        <td>{{product.category_name}}</td>
+        <td>{{product.item_name}}</td>
+        <td>{{product.total_quantity}}</td>
+        <td>{{product.unit_price}}</td>  
+        <td>{{product.item_Tonnage}}</td> 
+      </tr>
+    </tbody>  
+  </table>
+</div>
+{% endblock%}

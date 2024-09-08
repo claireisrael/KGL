@@ -13,11 +13,11 @@ html,body {
     -webkit-background-size: cover;
     background-size: cover;
     background-repeat: no-repeat;
-    background-color: lavender;
+    background-color: rgb(210, 224, 251);
 }
   
 body{
-      background-color: lavender;
+      background-color: rgb(210, 224, 251);
       font-family: 'raleway';
  }
     
@@ -30,12 +30,7 @@ form {
 
 
 
-.navbar {
-    .custom-navbar {
-        background-color: lightcyan ! important; /* Dark gray color */
-    }
-    
-}
+
 
 .navbar li a {
     font-size: 20px;

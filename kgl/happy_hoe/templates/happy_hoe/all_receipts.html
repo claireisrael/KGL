@@ -3,57 +3,65 @@
 {% block content %}
 <br />
 
-<div class="container" style="max-height: calc(100vh - 100px); overflow-y: auto; padding-bottom: 60px;">
-  <div class="row justify-content-center">
-    <div class="col-md-8">
-      <div class="card" style="overflow: hidden; position: relative; border-radius: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); width: 100%; max-height: 600px;">
-        <div class="card-header text-center">
-          <!-- Grocery Logo -->
-          <img src="{% static 'images/logo.png' %}" alt="Grocery Logo" class="img-fluid rounded-circle" style="width: 80px; height: 80px; margin-bottom: 10px;">
-          <h1 style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);">RECEIPT</h1>
-          <br>
-          <!-- Grocery Store Details -->
-          <div style="text-align: center; margin-bottom: 10px;">
-            <h2 style="font-size: 20px; font-weight: bold;">HAPPY HOE GROCERY</h2>
-            <p style="margin: 0;">Location: Matugga-Ttaawo</p>
-            <p style="margin: 0;">P.O. Box: 1234</p>
-          </div>
-          <h2 class="lead" style="text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);">Customer Name: {{ receipt.issued_to | title }}</h2>
+<div class="container" style="max-width: 360px; padding-bottom: 20px;">
+  <div class="receipt-card card" style="border-radius: 8px; box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); padding: 10px; background-color: #ffffff;">
+    <div class="receipt-header" style="display: flex; align-items: center; border-bottom: 1px solid #dee2e6; padding-bottom: 5px; margin-bottom: 5px;">
+      <!-- Grocery Logo on the left -->
+      <img src="{% static 'images/logo.jpg' %}" alt="Grocery Logo" class="img-fluid" style="width: 50px; height: 50px; margin-right: 10px;">
+      
+      <!-- Store details centered -->
+      <div style="flex: 1; text-align: center;">
+        <h1 style="font-size: 16px; color: #000000; font-family: 'Arial', sans-serif; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2); margin: 0;">Receipt</h1>
+        <div style="color: #000000; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);">
+          <h2 style="font-size: 12px; font-weight: bold; margin: 0;">Happy Hoe Grocery</h2>
+          <p style="margin: 0; font-size: 9px;">Location: Matugga-Ttaawo</p>
+          <p style="margin: 0; font-size: 9px;">P.O. Box: 1234</p>
         </div>
-        <div class="card-body" style="padding: 20px; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);">
-          <div class="receipt-content">
-            <div style="margin-bottom: 20px;">
-              <strong>Item:</strong>
-              <p>{{ receipt.item | title }}</p>
-            </div>
-            <div style="margin-bottom: 20px;">
-              <strong>Quantity:</strong>
-              <p>{{ receipt.quantity }}</p>
-            </div>
-            <div style="margin-bottom: 20px;">
-              <strong>Total Bill (UGX):</strong>
-              <p>UGX {{ receipt.get_total }}</p>
-            </div>
-            <div style="margin-bottom: 20px;">
-              <strong>Amount Paid (UGX):</strong>
-              <p>UGX {{ receipt.amount_received }}</p>
-            </div>
-            <div style="margin-bottom: 20px;">
-              <strong>Total Change (UGX):</strong>
-              <p>UGX {{ receipt.get_change }}</p>
-            </div>
-            <hr>
+        <h3 class="lead" style="font-size: 10px; color: #000000; margin: 5px 0; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);">Customer Name: {{ receipt.issued_to | title }}</h3>
+      </div>
+    </div>
+
+    <div class="receipt-body" style="padding: 5px;">
+      <div class="row">
+        <div class="col-md-6" style="border-right: 1px solid #dee2e6;">
+          <div style="margin-bottom: 5px;">
+            <h5 style="font-size: 10px; font-weight: bold; color: #000000; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);">Item</h5>
+            <p style="font-size: 10px; color: #000000; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);">{{ receipt.item | title }}</p>
+          </div>
+          <div style="margin-bottom: 5px;">
+            <h5 style="font-size: 10px; font-weight: bold; color: #000000; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);">Quantity</h5>
+            <p style="font-size: 10px; color: #000000; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);">{{ receipt.quantity }}</p>
+          </div>
+          <div style="margin-bottom: 5px;">
+            <h5 style="font-size: 10px; font-weight: bold; color: #000000; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);">Total Bill (UGX)</h5>
+            <p style="font-size: 10px; color: #000000; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);">UGX {{ receipt.get_total }}</p>
           </div>
         </div>
-        <div class="card-footer text-center" style="padding: 10px;">
-          <small style="color: #6c757d;">We appreciate you and look forward to serving you again!</small>
+        <div class="col-md-6">
+          <div style="margin-bottom: 5px;">
+            <h5 style="font-size: 10px; font-weight: bold; color: #000000; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);">Amount Paid (UGX)</h5>
+            <p style="font-size: 10px; color: #000000; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);">UGX {{ receipt.amount_received }}</p>
+          </div>
+          <div style="margin-bottom: 5px;">
+            <h5 style="font-size: 10px; font-weight: bold; color: #000000; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);">Total Change (UGX)</h5>
+            <p style="font-size: 10px; color: #000000; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);">UGX {{ receipt.get_change }}</p>
+          </div>
         </div>
+      </div>
+      <hr style="border-color: #dee2e6; margin: 5px 0;">
+      <div class="text-center" style="color: #000000; margin-top: 5px;">
+        <small style="font-size: 9px; text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);">Thanks for choosing Happy Hoe Grocery.</small>
       </div>
     </div>
   </div>
 </div>
 
 <style>
+  .container {
+    max-height: calc(100vh - 60px); /* Adjust height to fit viewport */
+    overflow-y: auto; /* Allow scrolling if needed */
+  }
+
   /* Hide scrollbar for WebKit browsers */
   .container::-webkit-scrollbar {
     display: none;
@@ -61,17 +69,8 @@
 
   /* Hide scrollbar for Firefox */
   .container {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-  }
-
-  /* Sticky footer */
-  footer {
-    position: sticky;
-    bottom: 0;
-    width: 100%;
-    background-color: #f8f9fa; /* Match your footer's design */
-    height: 50px; /* Adjust height as necessary */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
   }
 </style>
 

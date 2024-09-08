@@ -5,26 +5,25 @@
 <!-- This is my code to add spacing at the top of the page -->
 <br><br>
 
-<!-- Bouncing "Update Stock" header -->
-<h1 class="bouncing-header">UPDATE STOCK</h1>
+<!--  "Update Stock" header -->
+<h1 class="header">UPDATE STOCK</h1>
 
 <!-- This is my container that will hold the form -->
 <div class="container">
-  <!-- Button to go back to the dashboard -->
-  <a href="{% url 'dashboard' %}">
-    <button class="btn btn-success">Back </button>
-  </a>
-
-  <br><br> <!-- Add some spacing -->
-
   <!-- Styling the form container -->
-  <div class="form-container">
+  <div class="form-wrapper">
     <!-- This is my form, using the POST method to submit data -->
-    <form method="post">
-      {% csrf_token %} <!-- This is my CSRF token for security -->
-      {{ form | crispy }} <!-- This renders the form fields using crispy forms -->
-      <button type="submit" class="btn btn-primary">Save</button> <!-- This is my submit button to save the form data -->
-    </form>
+    <div class="form-container">
+      <form method="post">
+        {% csrf_token %} <!-- This is my CSRF token for security -->
+        {{ form | crispy }} <!-- This renders the form fields using crispy forms -->
+        <button type="submit" class="btn btn-primary">Save</button> <!-- This is my submit button to save the form data -->
+      </form>
+    </div>
+    <!-- Button to go back to the dashboard -->
+    <a href="{% url 'dashboard' %}" class="back-btn">
+      <button class="btn btn-success">Back</button>
+    </a>
   </div>
   <br><br>
 </div>
@@ -32,24 +31,22 @@
 <!-- Embedded CSS for styling -->
 <style>
   /* Style for the bouncing header */
-  .bouncing-header {
+  .header {
     text-align: center;
+    font-family: 'Georgia', serif;
     font-weight: bold;
-    color: black;
-    animation: bounce 2s infinite;
+    font-size: 1.75rem;
+    color: #0B2F9F;
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.8); /* Heavy text shadow */
   }
 
-  /* Keyframes for the bounce animation */
-  @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-      transform: translateY(0);
-    }
-    40% {
-      transform: translateY(-20px);
-    }
-    60% {
-      transform: translateY(-10px);
-    }
+  /* Style for the form wrapper */
+  .form-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Align items at the top */
+    max-width: 500px; /* Maximum width of the wrapper */
+    margin: 0 auto; /* Center the wrapper horizontally */
   }
 
   /* Style for the form container */
@@ -59,34 +56,51 @@
     padding: 20px; /* Padding around the form */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
     background-color: #f9f9f9; /* Background color */
-    max-width: 500px; /* Maximum width of the container */
-    margin: 0 auto; /* Center the container horizontally */
+    width: 100%; /* Full width within the wrapper */
+    position: relative; /* Position relative to place the back button */
   }
 
   /* Style for the form labels and input text */
-  .form-container label {
-    color: #333; /* Dark text color for labels */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Light shadow for labels */
-  }
-
-  /* Style for form inputs and buttons */
+  .form-container label,
   .form-container .form-control,
   .form-container .btn {
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Light shadow for input text */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Heavy shadow for form text */
   }
 
   /* Style for the submit button */
   .form-container .btn-primary {
-    background-color: #007bff; /* Primary button background color */
+    background-color:#0B2F9F; /* Primary button background color */
     border: none; /* Remove border */
     border-radius: 5px; /* Rounded corners for the button */
     padding: 10px 20px; /* Padding inside the button */
     color: white; /* Button text color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Button shadow */
+    margin-top: 1rem; /* Add margin to separate from form elements */
   }
 
   .form-container .btn-primary:hover {
     background-color: #0056b3; /* Darker color on hover */
   }
 
-  /* Style for the "Back
- {% endblock %}
+  /* Style for the back button */
+  .back-btn {
+    align-self: flex-end; /* Align it to the bottom right */
+    margin-left: 20px; /* Space between form and back button */
+  }
+
+  .btn-success {
+    background-color: rgb(157, 189, 255); /*  button background color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners for the button */
+    padding: 10px 20px; /* Padding inside the button */
+    color:#0B2F9F; /* Button text color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Button shadow */
+  }
+
+  .btn-success:hover {
+    background-color:rgb(210, 224, 251); /* Darker color on hover */
+  }
+
+</style>
+
+{% endblock %}

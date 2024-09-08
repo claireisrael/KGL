@@ -1,4 +1,5 @@
 {% extends 'happy_hoe/base.html' %}
+
 {% load static %}
 {% block content %}
 
@@ -10,7 +11,7 @@
     padding: 1rem;
     margin: 0 auto;
     width: 90%;
-    background-color: #f9f9f9;
+    background-color: white;
   }
 
   .scrollable-container::-webkit-scrollbar {
@@ -38,6 +39,9 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    font-family: "Open Sans", sans-serif; /* Apply font-family here */
+    /* Subtle text shadow for all text in grid items */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
   }
 
   .table_header {
@@ -50,15 +54,40 @@
     font-family: 'Courier New', Courier, monospace;
   }
 
+  .table_header h1 {
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    font-size: 1.75rem;
+    color: #0B2F9F;
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.8); /* Heavy text shadow */
+  }
+
+  .grid-item h2 {
+    font-family: 'Georgia', serif; /* Same font family as h1 */
+    font-size: 1.5rem; /* You can adjust this size as needed */
+    color: #0B2F9F; /* Same color as h1 */
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.8); /* Match text shadow with h1 */
+    margin-bottom: 0.5rem; /* Optional: Adjust margin as needed */
+  }
+
   .search-container {
     display: flex;
     justify-content: flex-end;
     padding: 1rem 0;
-    
+  }
+
+  form {
+    display: flex;
+    align-items: center;
+    border: 2px solid #ddd;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
 
   .search-btn {
-    background-color:rgb(157, 189, 255);
+    background-color: rgb(157, 189, 255);
     color: white;
     border: none;
     border-radius: 0.5rem;
@@ -66,11 +95,11 @@
     font-family: 'Courier New', Courier, monospace;
     cursor: pointer;
     transition: background-color 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Medium shadow */
   }
 
   .search-btn:hover {
-    background-color: #0056b3;
-
+    background-color: rgb(210, 224, 251);
   }
 
   .btn {
@@ -81,14 +110,17 @@
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s;
+    font-family: "Times New Roman", Times, serif;
+    /* Medium shadow */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   }
-
+ 
   .btn-primary {
-    background-color: rgb(255, 215, 196);
+    background-color: #0B2F9F;
   }
 
   .btn-primary:hover {
-    background-color: #0056b3;
+    background-color: rgb(210, 224, 251);
   }
 
   .btn-danger {
@@ -100,11 +132,11 @@
   }
 
   .btn-success {
-    background-color: rgb(157, 189, 255);
+    background-color:rgb(157, 189, 255);
   }
 
   .btn-success:hover {
-    background-color: #21883;
+    background-color: rgb(210, 224, 251);
   }
 
   .button-group {
@@ -122,6 +154,11 @@
     margin-top: 0.5rem;
     text-align: center;
   }
+
+  /* General text shadow for all text on the page */
+  body {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  }
 </style>
 
 <br><br>
@@ -133,7 +170,7 @@
   <div class="search-container">
     <form method="GET" action="">
       {{ product_filters.form }}
-      <button type="submit" class="search-btn">Search</button>
+      <button type="submit" class="search-btn">🔍 Search</button>
     </form>
   </div>
 
@@ -149,7 +186,7 @@
           <button class="btn btn-success">Update</button>
         </a>
         <a href="{% url 'product_detail' product.id %}">
-          <button class="btn btn-primary">Sale Item</button>
+          <button class="btn btn-primary">Sell Item</button>
         </a>
       </div>
       <div class="delete-button">

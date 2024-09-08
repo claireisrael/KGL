@@ -8,9 +8,11 @@
     <title>Happy Hoe Grocery</title>
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <!-- Raleway font -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,700&display=swap" rel="stylesheet">
     <!-- Montserrat font -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+    <!-- Calligraphy Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
     <style>
         /* Sticky footer styles */
         html {
@@ -22,26 +24,53 @@
             margin-bottom: 60px; /* Space for the footer */
             position: relative;
             font-family: 'Raleway', sans-serif;
+            background-color: rgb(210, 224, 251);
         }
 
         .navbar {
-            background-color: rgb(157, 189, 255); /* Dark Gray */
+            background-color: rgb(157, 189, 255);
             padding: 10px 20px;
         }
 
-        .navbar .nav-link, .navbar-brand {
-            color: white !important;
-            font-family: 'Dancing Script', cursive;
-
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            margin-right: 1rem; /* Space between logo and links */
         }
 
-        .navbar .nav-link:hover {
-            color: rgb(118, 149, 255) !important; /* Yellow color on hover */
-          }
-
         .navbar-brand img {
-            height: 40px;
-            margin-right: 10px;
+            height: 60px; /* Adjusted height for better logo appearance */
+            width: auto; /* Maintain aspect ratio */
+        }
+
+        .navbar-brand .brand-text {
+            margin-left: 10px; /* Space between logo and text */
+            font-size: 1.5rem; /* Adjust text size */
+            font-weight: bold; /* Bold text */
+            color: white; /* Text color */
+        }
+
+        .navbar-nav {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-left: auto; /* Align items to the right */
+        }
+
+        .navbar-nav .nav-item {
+            margin-left: 1rem; /* Small space between nav items */
+        }
+
+        .navbar-nav .nav-link {
+            color: white !important; /* White color for nav links */
+            font-family: 'Dancing Script', cursive; /* Calligraphy font for nav links */
+            font-weight: 700; /* Bold text */
+            font-size: 1.4rem; /* Medium font size */
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8); /* Enhanced text shadow */
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: rgb(118, 149, 255) !important; /* Color on hover */
         }
 
         .footer {
@@ -50,50 +79,62 @@
             width: 100%;
             height: 60px; /* Footer height */
             line-height: 60px; /* Vertically center the text */
-            background-color: rgb(157, 189, 255); /* Dark Gray */
+            background-color: rgb(157, 189, 255); /* Footer color */
             color: white;
             text-align: center;
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Great Vibes', cursive; /* Calligraphy font for footer */
+            font-weight: 700; /* Bold text */
+            font-size: 1.4rem; /* Medium font size */
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8); /* Enhanced text shadow */
         }
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .navbar .nav-link {
-                font-size: 14px;
+                font-size: 1rem;
             }
 
             .footer {
-                font-size: 14px;
+                font-size: 1rem;
                 height: 50px; /* Adjust footer height for smaller screens */
                 line-height: 50px;
+            }
+
+            .navbar-brand img {
+                height: 50px; /* Adjust logo height on smaller screens */
             }
         }
     </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg">
-        <!-- Logo in the Navbar -->
-        <a class="navbar-brand" href="#">
-            <img src="{% static 'images/logo.png' %}" alt="Logo">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon" style="color: white;"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ml-auto">
-            <!-- Menu items for authenticated users only -->
-            {% if user.is_authenticated %}
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'allsales' %}">All Sales</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-              </li>
-            {% endif %}
-          </ul>
+        <div class="container">
+            <!-- Logo and text on the left side -->
+            <a class="navbar-brand" href="#">
+                <img src="{% static 'images/logo.png' %}" alt="Logo">
+                <span class="brand-text">HAPPY HOE GROCERY</span>
+            </a>
+
+            <!-- Navbar links -->
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'allsales' %}">All Sales</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'receipt' %}">All Receipts</a>
+                    </li>
+                {% endif %}
+                <!-- Align right links -->
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    </li>
+                {% endif %}
+            </ul>
         </div>
     </nav>
 

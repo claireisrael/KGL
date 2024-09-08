@@ -1,60 +1,142 @@
 {% extends 'happy_hoe/base.html' %}
+{% load static %}
 
 {% block content %}
 <br>
 
 <div class="container">
-  <h1 class="text-center" style="font-family: 'Courier New, Courier, monospace;">TOTAL SALES MADE</h1>
+  <h1 class="text-center sales-heading">
+    TOTAL SALES MADE
+  </h1>
   <br>
-  <div class="table-container" style="border: 2px solid #dee2e6; border-radius: 10px; padding: 20px;">
-    <table class="table table-bordered" style="border-radius: 10px; overflow: hidden;">
-      <thead style="background-color: whitesmoke; color: black; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);">
-        <tr>
-          <th scope="col">Total Amount Received</th>
-          <th scope="col">Total Change Given</th>
-          <th scope="col">Net Amount</th>
-        </tr>
-      </thead>  
-      <tbody style="text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);">
-        <tr>    
-          <td>UGX {{ total }}</td>
-          <td>UGX {{ change }}</td>
-          <td>UGX {{ net_cash }}</td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="table-container">
+    <div class="card-row">
+      <div class="card-item">
+        <h5>Total Amount Received</h5>
+        <p>UGX {{ total }}</p>
+      </div>
+      <div class="card-item">
+        <h5>Total Change Given</h5>
+        <p>UGX {{ change }}</p>
+      </div>
+      <div class="card-item">
+        <h5>Net Amount</h5>
+        <p>UGX {{ net_cash }}</p>
+      </div>
+    </div>
   </div>
 </div>
 <br>
 
 <div class="container">
-  <div class="table-container" style="border: 2px solid #dee2e6; border-radius: 10px; padding: 20px;">
-    <table class="table table-bordered table-striped" style="border-radius: 10px; overflow: hidden;">
-      <thead style="background-color: whitesmoke; color: black; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);">
-        <tr>
-          <th scope="col">Customer Name</th>
-          <th scope="col">Item Bought</th>
-          <th scope="col">Quantity</th>
-          <th scope="col">Unit Price (UGX)</th>
-          <th scope="col">Total Cost</th>
-          <th scope="col">Amount Paid</th>
-          <th scope="col">Change Collected</th>
-        </tr>
-      </thead>
-      <tbody style="text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);">
-        {% for sale in sales %}
-        <tr>    
-          <td>{{ sale.issued_to | title }}</td>
-          <td>{{ sale.item | title }}</td>
-          <td>{{ sale.quantity }}</td>
-          <td>UGX {{ sale.unit_price }}</td>
-          <td>UGX {{ sale.get_total }}</td>
-          <td>UGX {{ sale.amount_received }}</td>
-          <td>UGX {{ sale.get_change }}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+  <div class="table-container">
+    <div class="card-row">
+      {% for sale in sales %}
+      <div class="card-item">
+        <h6>Customer: {{ sale.issued_to | title }}</h6>
+        <p><strong>Item:</strong> {{ sale.item | title }}</p>
+        <p><strong>Quantity:</strong> {{ sale.quantity }}</p>
+        <p><strong>Unit Price:</strong> UGX {{ sale.unit_price }}</p>
+        <p><strong>Total Cost:</strong> UGX {{ sale.get_total }}</p>
+        <p><strong>Amount Paid:</strong> UGX {{ sale.amount_received }}</p>
+        <p><strong>Change Collected:</strong> UGX {{ sale.get_change }}</p>
+        <a href="{% url 'all_receipts' sale.id %}">
+          <button class="btn btn-primary">Receipt</button>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
   </div>
 </div>
+
+<!-- Custom Styles -->
+<style>
+  /* Header style */
+  .sales-heading {
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    font-size: 2rem;
+    color: #0B2F9F;
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.8); /* Heavy text shadow */
+  }
+
+  /* Table container style */
+  .table-container {
+    border: 2px solid #dee2e6;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 30px;
+    background-color: #f8f9fa; /* Light background color */
+  }
+
+  /* Card row style */
+  .card-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  /* Individual card style */
+  .card-item {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: left; /* Align text to the left */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1 1 calc(33% - 20px); /* Adjust width to fit 3 cards per row */
+    font-size: 0.9rem; /* Reduce font size */
+  }
+
+  .card-item h5, .card-item h6 {
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    color: #0B2F9F;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Medium text shadow */
+  }
+
+  .card-item p {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    font-size: 0.85rem; /* Reduce font size */
+    margin: 0.5rem 0;
+  }
+
+  .card-item button {
+    margin-top: 10px;
+  }
+
+  /* Custom button styles */
+  .btn-primary {
+    background-color: #0B2F9F;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-family: "Times New Roman", Times, serif;
+  }
+
+  .btn-primary:hover {
+    background-color: rgb(210, 224, 251); /* Hover effect */
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .sales-heading {
+      font-size: 1.5rem;
+    }
+
+    .table-container {
+      padding: 15px;
+    }
+
+    .card-item {
+      flex: 1 1 100%; /* Full width on small screens */
+    }
+  }
+</style>
+
 {% endblock %}

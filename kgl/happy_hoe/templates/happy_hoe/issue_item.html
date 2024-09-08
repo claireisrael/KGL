@@ -4,53 +4,96 @@
 {% block content %}
 <br/>
 
-<div class="container" style="max-width: 100%; height: 500px; overflow-y: auto;">
+<!-- Apply specific class to avoid affecting the global layout -->
+<div class="sales-form-container" style="max-width: 100%; height: 500px; overflow-y: auto;">
   <form method="POST" action="">
-    <h1 class="text-center">SALES FORM</h1>
-    <br>
     {% csrf_token %}
+    <!-- Wrap h3 in a container and apply custom font family inside the form -->
+    <div class="header-container text-center">
+      <h3 class="sales-form-header">MAKE A SALE</h3>
+    </div>
+    <br>
     {{ sales_form|crispy }}
     <input type="submit" class="btn btn-secondary btn-block" value="Submit">
   </form>
+  
+  <!-- Back button -->
+  <a href="{% url 'dashboard' %}" class="btn-back">Back</a>
 </div>
 
 <style>
   /* Custom styles for the form container */
-  .container {
+  .sales-form-container {
     max-width: 100%;
-    height: 500px; /* Set a fixed height for the container */
-    overflow-y: auto; /* Enable vertical scrolling */
-    padding-right: 15px; /* Ensure padding on the right */
+    height: 500px;
+    overflow-y: auto;
+    padding-right: 15px;
+    position: relative; /* Ensure the back button is positioned relative to this container */
   }
 
-  /* Hide scrollbar */
-  .container::-webkit-scrollbar {
-    display: none; /* Hide scrollbar in WebKit-based browsers */
+  /* Custom header container inside the form */
+  .header-container {
+    margin-bottom: 20px;
   }
 
-  .container {
-    -ms-overflow-style: none;  /* Hide scrollbar in IE and Edge */
-    scrollbar-width: none;  /* Hide scrollbar in Firefox */
+  /* Apply a beautiful font and heavy text shadow to the h3 inside the form */
+  .sales-form-header {
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    font-size: 1.75rem;
+    color: #0B2F9F;
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.8); /* Heavy text shadow */
   }
 
-  /* Reduce space between form fields */
-  .form-group {
-    margin-bottom: 10px; /* Adjust spacing between fields */
-  }
-
-  /* Custom styles for the form */
+  /* Heavy shadow for the entire form */
   form {
     padding: 20px;
     background-color: white;
     border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Heavy shadow */
   }
 
-  /* Adjust button styling */
+  /* Add a text shadow to form fields */
+  .form-group, label, input, select, textarea {
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Heavy text shadow */
+    font-family: 'Courier New', Courier, monospace; /* Beautiful font family */
+  }
+
   .btn-secondary {
-    width: 10%;
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 4px;
+    background-color: #0B2F9F;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-family: "Times New Roman", Times, serif;
+  }
+
+  .btn-secondary:hover {
+    background-color: rgb(210, 224, 251);
+  }
+
+  /* Back button styling */
+  .btn-back {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgb(157, 189, 255);
+    color: #333;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: "Arial", sans-serif;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .btn-back:hover {
+    background-color: rgb(210, 224, 251);
   }
 </style>
 {% endblock %}

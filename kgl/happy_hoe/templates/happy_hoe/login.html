@@ -3,7 +3,6 @@
 {% load static %}
 
 <style>
-
     footer {
         background: black;
         bottom: 0;
@@ -16,32 +15,38 @@
     }
 
     .scrollable-vertical {
-    max-height: 500px;
-    overflow-y: auto;
-    padding: 10px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-  }
+        max-height: 500px;
+        overflow-y: auto;
+        padding: 10px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+
+    h5 {
+        text-align: center;
+    }
 </style>
 
 {% block content %}
 <br><br>
- <!--this is a container that contains the form-->
+<!--this is a container that contains the form-->
 <div class="container scrollable-vertical">
     <div class="body container-fluid container login">
 
         <div class="container container-fluid">
-            <form id="form" method="POST" class="loginform" style="border-radius: 25px; border: 2px solid white;  padding: 20px; color: black; width: 400px;height: 350px; ">
+            <form id="form" method="POST" class="loginform" style="border-radius: 25px; border: 2px solid rgb(157, 189, 255); padding: 20px; color: black; width: 300px; height: 300px;">
+                <div>
+                    <h5 class="form-header">HAPPY HOE GROCERY LTD</h5>
+                </div>
                 {% csrf_token %}
-                {{form | crispy}}
-                <br> <br>
+                {{ form | crispy }}
+                <br><br>
                 <!--my submit button-->
                 <button type="submit" name="Login" class="btn btn-info btn-danger btn-block">Login</button>
                 <br>
-
             </form>
         </div>
     </div>
 </div>
 <br>
-{% endblock %}
+{% endblock %}

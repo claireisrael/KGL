@@ -24,23 +24,31 @@
             margin-bottom: 60px; /* Space for the footer */
             position: relative;
             font-family: 'Raleway', sans-serif;
-            background-color: rgb(210, 224, 251);
+            {% comment %} background-image: url("{% static 'images/stock.jpg' %}"); /* Background image */ {% endcomment %}
+            background-size: cover; /* Cover the entire page */
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat; /* Prevent tiling */
+            background-color: #9DBDFF; /* Fallback color */
         }
 
         .navbar {
-            background-color: rgb(157, 189, 255);
+            background-color:#7695FF;
             padding: 10px 20px;
+            font-family: 'Great Vibes', cursive; /* Calligraphy font for navbar */
         }
 
         .navbar-brand {
             display: flex;
             align-items: center;
             margin-right: 1rem; /* Space between logo and links */
+            
+            
         }
 
         .navbar-brand img {
             height: 60px; /* Adjusted height for better logo appearance */
             width: auto; /* Maintain aspect ratio */
+            
         }
 
         .navbar-brand .brand-text {
@@ -48,6 +56,7 @@
             font-size: 1.5rem; /* Adjust text size */
             font-weight: bold; /* Bold text */
             color: white; /* Text color */
+            font-family: 'Dancing Script', cursive; /* Calligraphy font */
         }
 
         .navbar-nav {
@@ -62,15 +71,17 @@
         }
 
         .navbar-nav .nav-link {
-            color: white !important; /* White color for nav links */
-            font-family: 'Dancing Script', cursive; /* Calligraphy font for nav links */
+            color: black !important; /* White color for nav links */
             font-weight: 700; /* Bold text */
-            font-size: 1.4rem; /* Medium font size */
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8); /* Enhanced text shadow */
+            font-size: 1rem; /* Medium font size */
+            font-family: 'Georgia', serif;
+
+            {% comment %} text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8); /* Enhanced text shadow */ {% endcomment %}
+
         }
 
         .navbar-nav .nav-link:hover {
-            color: rgb(118, 149, 255) !important; /* Color on hover */
+            color:rgb(210, 224, 251) !important; /* Color on hover */
         }
 
         .footer {
@@ -79,13 +90,15 @@
             width: 100%;
             height: 60px; /* Footer height */
             line-height: 60px; /* Vertically center the text */
-            background-color: rgb(157, 189, 255); /* Footer color */
-            color: white;
+            background-color: #7695FF; /* Footer color */
+            color: black;
             text-align: center;
-            font-family: 'Great Vibes', cursive; /* Calligraphy font for footer */
             font-weight: 700; /* Bold text */
-            font-size: 1.4rem; /* Medium font size */
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8); /* Enhanced text shadow */
+            font-size: 0.60rem; /* Medium font size */
+            font-family: 'Georgia', serif;
+
+            {% comment %} text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8); /* Enhanced text shadow */ {% endcomment %}
+
         }
 
         /* Responsive adjustments */
@@ -95,13 +108,14 @@
             }
 
             .footer {
-                font-size: 1rem;
+                font-size: 0.50rem;
                 height: 50px; /* Adjust footer height for smaller screens */
                 line-height: 50px;
             }
 
             .navbar-brand img {
                 height: 50px; /* Adjust logo height on smaller screens */
+                background: transparent;
             }
         }
     </style>
@@ -112,7 +126,7 @@
             <!-- Logo and text on the left side -->
             <a class="navbar-brand" href="#">
                 <img src="{% static 'images/logo.png' %}" alt="Logo">
-                <span class="brand-text">HAPPY HOE GROCERY</span>
+                {% comment %} <span class="brand-text">HAPPY HOE GROCERY</span> {% endcomment %}
             </a>
 
             <!-- Navbar links -->
@@ -125,7 +139,7 @@
                         <a class="nav-link" href="{% url 'allsales' %}">All Sales</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'receipt' %}">All Receipts</a>
+                        <a class="nav-link" href="{% url 'receipt' %}">Receipts</a>
                     </li>
                 {% endif %}
                 <!-- Align right links -->
@@ -146,7 +160,7 @@
     <!-- Sticky Footer -->
     <footer class="footer">
         <div class="container">
-            <span>&copy; Happy Hoe Grocery - Designed by Claire Namagala</span>
+            <span>&copy; Happy Hoe Grocery Ltd. All Rights Reserved- Designed by Claire Namagala</span>
         </div>
     </footer>
 

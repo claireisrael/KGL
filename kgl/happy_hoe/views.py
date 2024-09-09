@@ -122,8 +122,17 @@ def add_stock(request, pk):
     return render(request, 'happy_hoe/add_stock.html', {'form': form})
 
 # View for displaying all sales, not restricted to logged-in users
-def allsales(request):
-    # Fetch all sales from the Sale model, ordered by ID in descending order
+# def allsales(request):
+#     # Fetch all sales from the Sale model, ordered by ID in descending order
+#     sale = Sale.objects.all().order_by('-id')
+#     # Render the allsales.html template with the sales data
+#     return render(request, 'happy_hoe/allsales.html', {'sales': sale})
+
+
+def all_sales(request):
     sale = Sale.objects.all().order_by('-id')
-    # Render the allsales.html template with the sales data
-    return render(request, 'happy_hoe/allsales.html', {'sales': sale})
+    total_expected = sum([items.get_total() or 0  for items in sale])
+    total = sum([items.amount_received or 0 for items in sale])
+    total_change = sum([items.get_change() or 0  for items in sale])
+    net = total_expected - total
+    return render(request, 'digitalbook/all_sales.html', {'sales': sale, 'total':total, 'total_change':total_change, 'net':net, 'total_expected':total_expected})

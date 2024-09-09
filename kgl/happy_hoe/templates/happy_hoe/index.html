@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
             background-color: lavender;
@@ -18,7 +18,6 @@
             height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* Ensure content is spread across the height */
         }
 
         .navbar {
@@ -51,7 +50,7 @@
         }
 
         .navbar .btn-login {
-            background-color: #4CAF50;
+            background-color: lavender;
             color: white;
             padding: 0.5em 1.5em;
             border: none;
@@ -63,30 +62,30 @@
         }
 
         .navbar .btn-login:hover {
-            background-color: #45a049;
+            background-color: #6d7fa0;
         }
 
         .content {
             flex: 1;
             margin-top: 80px;
             padding: 2em;
-            overflow-y: auto; /* Enable scrolling if content overflows */
+            overflow-y: auto;
         }
 
         .stock-levels {
-            max-width: 1200px;
+            max-width: 400px; /* Further reduced the width to make it smaller */
             margin: 0 auto;
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.85);
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-            font-family: 'Dancing Script', cursive;
-
+            padding: 1em;
         }
 
         .stock-levels h1 {
             color: black;
             text-align: center;
             margin-bottom: 1em;
+            font-family: 'Georgia', serif;
         }
 
         .stock-table {
@@ -96,40 +95,43 @@
 
         .stock-table th,
         .stock-table td {
-            padding: 1em;
+            padding: 0.3em; /* Reduced padding further to make the table more compact */
             border: 1px solid #ddd;
-            text-align: left;
+            text-align: center;
+            font-family: 'Courier New', Courier, monospace;
         }
 
         .stock-table th {
-            background-color: lightsteelblue;
+            background-color: #8c9eff;
             color: white;
             font-weight: bold;
+            border-bottom: 2px solid #7a82db;
         }
+
+        .stock-table td {
+            background-color: #f4f4f9;
+        }
+
+        .stock-table tr:hover {
+            background-color: #e6f2ff;
+        }
+
         .footer-container {
-    background-color:  rgb(118, 149, 255); /* Match navbar color */
-    padding: 1.5em; /* Increased padding for a larger footer */
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.3);
-    text-align: center;
-}
- 
-   .footer {
-    color: black;
-    font-size: 0.9em;
-    white-space: nowrap; 
-    overflow: hidden; 
-    animation: scrollText 25s linear infinite;
-}
+            background-color: rgb(118, 149, 255);
+            padding: 1em;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+        }
 
-@keyframes scrollText {
-    0% {
-        transform: translateX(100%);
-    }
-    100% {
-        transform: translateX(-100%);
-    }
-}
-
+        .footer {
+            color: black;
+            font-size: 0.9em;
+            font-family: 'Lucida Console', Monaco, monospace;
+        }
     </style>
 </head>
 
@@ -145,8 +147,6 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-
-                <li class="nav-item">
                     <a class="btn-login" href="{% url 'login' %}">Login</a>
                 </li>
             </ul>
@@ -156,7 +156,7 @@
     <!-- Main Content -->
     <div class="content">
         <div class="stock-levels">
-            <h1>Stock Levels</h1>
+            <h1>STOCK LEVELS</h1>
             <table class="stock-table">
                 <thead>
                     <tr>

@@ -14,13 +14,13 @@
   .card-header {
     font-size: 1.1rem; /* Font size of the card header */
     font-weight: bold;
-    color: #0B2F9F;
+    color:#7695FF;
     padding: 10px; /* Padding inside the card header */
     border-bottom: 1px solid #dee2e6;
     border-radius: 8px 8px 0 0; /* Border radius for top corners */
     text-align: center;
     font-family: 'Georgia', serif;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Medium text shadow */
+    {% comment %} text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Medium text shadow */ {% endcomment %}
   }
 
   .card-body {
@@ -30,7 +30,7 @@
   .card-body p {
     font-size: 0.9rem; /* Font size of paragraphs in card body */
     margin: 6px 0; /* Margin for paragraphs */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Medium text shadow */
+    {% comment %} text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Medium text shadow */ {% endcomment %}
   }
 
   .card-body p strong {
@@ -44,9 +44,8 @@
     color: white;
     font-size: 0.9rem; /* Font size of the button */
     cursor: pointer;
-    transition: background-color 0.3s;
     font-family: "Times New Roman", Times, serif;
-    background-color: #0B2F9F;
+    background-color:#7695FF;
   }
 
   .btn-primary:hover {
@@ -58,7 +57,7 @@
     position: fixed;
     bottom: 80px; /* Position from the bottom */
     right: 20px; /* Position from the right */
-    background-color: rgb(157, 189, 255);
+    background-color:#7695FF;
     color: white;
     font-weight: bold;
     border-radius: 5px;
@@ -78,7 +77,7 @@
 <div class="container">
   <div class="card-container">
     <div class="card-header">
-      Product Details
+      PRODUCT DETAILS
     </div>
     <div class="card-body">
       <p><strong>Item Name:</strong> {{ product.stock_name }}</p>

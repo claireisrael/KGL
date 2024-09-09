@@ -4,10 +4,16 @@
 {% block content %}
 <br /><br>
 
-<!-- Bouncing Header Section -->
-<h1 class="bouncing-header text-center mb-4" style="color:#0B2F9F;">
-    ALL RECEIPTS
-</h1>
+<!-- Header Card -->
+<div class="container">
+  <div class="card header-card mb-4 text-center" style="border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); background-color: white;">
+    <div class="card-body">
+      <h1 class="bouncing-header" style="color:black;">
+        ALL RECEIPTS
+      </h1>
+    </div>
+  </div>
+</div>
 
 <!-- Scrollable Receipts Grid -->
 <div class="container">
@@ -17,12 +23,11 @@
     <div class="col-lg-4 col-md-6 mb-3">
       <div class="card" style="border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transition: transform 0.2s;">
         <div class="card-body">
-<h1 class="bouncing-header text-center mb-4" style="color: black;">
-          <h3 class="card-title" style="color:black;">Customer: {{ sale.issued_to | title }}</h3>
+          <h3 class="card-title" style="color:#7695FF;">Customer: {{ sale.issued_to | title }}</h3>
           <h6 class="card-text"><strong>Item:</strong> {{ sale.item }}</h6>
           <h6 class="card-text"><strong>Amount Paid:</strong> UGX {{ sale.amount_received }}</h6>
           <h6 class="card-text"><strong>Quantity:</strong> {{ sale.quantity }}</h6>
-          <h5 style="color: #dc3545; font-family: 'Georgia', serif; color: #0B2F9F;"><strong>Total Price:</strong> UGX {{ sale.get_total }}</h2>
+          <h5 style="color: #dc3545; font-family: 'Georgia', serif; color: #7695FF;"><strong>Total Price:</strong> UGX {{ sale.get_total }}</h5>
           <div class="d-flex justify-content-between align-items-center">
             <h6 class="card-text" style="color:black;"><strong>Change Collected:</strong> UGX {{ sale.get_change }}</h6>
             <a href="{% url 'all_receipts' sale.id %}">
@@ -43,21 +48,10 @@
     font-family: 'Georgia', serif;
     font-weight: bold;
     font-size: 1.75rem;
-    color: #0B2F9F;
-    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.8); /* Heavy text shadow */
+    color: black;
+    {% comment %} text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.8); /* Heavy text shadow */ {% endcomment %}
   }
 
-  @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-      transform: translateY(0);
-    }
-    40% {
-      transform: translateY(-30px);
-    }
-    60% {
-      transform: translateY(-15px);
-    }
-  }
 
   /* Hide scrollbar for WebKit browsers */
   .all_receipts::-webkit-scrollbar {
@@ -78,7 +72,7 @@
 
   /* Custom button styles */
   .btn-primary {
-    background-color: #0B2F9F;
+    background-color:#7695FF;
     padding: 0.5rem 1rem;
     border: none;
     border-radius: 0.5rem;
@@ -95,8 +89,15 @@
 
   /* Apply a smaller text shadow to every word on the page except h1 */
   .card-title, .card-text, h2 {
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Smaller text shadow */
+    {% comment %} text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Smaller text shadow */ {% endcomment %}
     font-family: 'Arial', sans-serif; /* Beautiful font family */
+  }
+
+  /* Header Card Styles */
+  .header-card {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   }
 
   /* Responsive adjustments */

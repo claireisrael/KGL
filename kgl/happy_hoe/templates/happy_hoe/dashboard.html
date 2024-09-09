@@ -39,8 +39,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    font-family: "Open Sans", sans-serif; /* Apply font-family here */
-    /* Subtle text shadow for all text in grid items */
+    font-family: "Open Sans", sans-serif;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
   }
 
@@ -58,16 +57,14 @@
     font-family: 'Georgia', serif;
     font-weight: bold;
     font-size: 1.75rem;
-    color: #0B2F9F;
-    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.8); /* Heavy text shadow */
+    color: black;
   }
 
   .grid-item h2 {
-    font-family: 'Georgia', serif; /* Same font family as h1 */
-    font-size: 1.5rem; /* You can adjust this size as needed */
-    color: #0B2F9F; /* Same color as h1 */
-    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.8); /* Match text shadow with h1 */
-    margin-bottom: 0.5rem; /* Optional: Adjust margin as needed */
+    font-family: 'Georgia', serif;
+    font-size: 1.5rem;
+    color:#7695FF;
+    margin-bottom: 0.5rem;
   }
 
   .search-container {
@@ -95,7 +92,6 @@
     font-family: 'Courier New', Courier, monospace;
     cursor: pointer;
     transition: background-color 0.3s;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Medium shadow */
   }
 
   .search-btn:hover {
@@ -111,16 +107,15 @@
     cursor: pointer;
     transition: background-color 0.3s;
     font-family: "Times New Roman", Times, serif;
-    /* Medium shadow */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   }
- 
+
   .btn-primary {
-    background-color: #0B2F9F;
+    background-color:#7695FF;
   }
 
   .btn-primary:hover {
-    background-color: rgb(210, 224, 251);
+    background-color: #9DBDFF;
   }
 
   .btn-danger {
@@ -132,27 +127,37 @@
   }
 
   .btn-success {
-    background-color:rgb(157, 189, 255);
+    background-color:#9DBDFF;
   }
 
   .btn-success:hover {
-    background-color: rgb(210, 224, 251);
+    background-color:#7695FF;
   }
 
-  .button-group {
+  /* Align the buttons horizontally */
+  .button-group, .delete-button {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 0.5rem;
+    margin: 0.5rem 0;
   }
 
-  .button-group a {
-    flex: 1;
-    margin: 0 0.25rem;
+  /* Ensure all buttons stay on the same row */
+  .grid-item .button-group {
+    flex-grow: 1;
+    margin-right: 0.5rem;
   }
 
-  .delete-button {
-    margin-top: 0.5rem;
-    text-align: center;
+  .grid-item .delete-button {
+    flex-grow: 1;
+  }
+
+  /* Ensure uniform spacing between buttons */
+  .grid-item .btn {
+    margin-right: 0.5rem;
+  }
+
+  .no-text-shadow {
+    text-shadow: none; /* Removes the shadow */
   }
 
   /* General text shadow for all text on the page */
@@ -178,20 +183,20 @@
     {% for product in products %}
     <div class="grid-item">
       <h2>{{ product.stock_name }}</h2>
-      <p><strong>Quantity:</strong> {{ product.total_quantity }}</p>
-      <p><strong>Unit Price (UGX):</strong> UGX {{ product.unit_price }}</p>
-      <p><strong>Branch Name:</strong> {{ product.stock_branch }}</p>
+      <p><strong>Quantity:</strong> <span class="no-text-shadow">{{ product.total_quantity }}</span></p>
+      <p><strong>Unit Price (UGX):</strong> <span class="no-text-shadow">UGX {{ product.unit_price }}</span></p>
+      <p><strong>Branch Name:</strong> <span class="no-text-shadow">{{ product.stock_branch }}</span></p>
+
+      <!-- Group all buttons horizontally -->
       <div class="button-group">
         <a href="{% url 'add_stock' product.id %}">
           <button class="btn btn-success">Update</button>
         </a>
         <a href="{% url 'product_detail' product.id %}">
-          <button class="btn btn-primary">Sell Item</button>
+          <button class="btn btn-primary">Sell</button>
         </a>
-      </div>
-      <div class="delete-button">
         <a href="{% url 'delete_detail' product.id %}">
-          <button class="btn btn-danger">Delete Item</button>
+          <button class="btn btn-danger">Delete</button>
         </a>
       </div>
     </div>

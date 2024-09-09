@@ -9,12 +9,12 @@
         <div class="container container-fluid">
             <form id="form" method="POST" style="border-radius: 25px; border: 2px solid rgb(157, 189, 255); padding: 27px; color: black; width: 300px; height: 299px; background-color:white;">
                 <div>
-                    <h6 style="font-family: 'Georgia', serif; font-weight: bold; font-size: 1.0rem; color:black; text-align: center;">HAPPY HOE GROCERY LTD</h6>
+                    <h6 style="font-family: 'Georgia', serif; font-weight: bold; color:black; text-align: center;">HAPPY HOE GROCERY LTD</h6>
                 </div>
                 {% csrf_token %}
                 {{ form | crispy }}
                 <!-- Custom Login button with inline styles -->
-                <button type="submit" style="padding: 0.5rem 1rem; border: none; border-radius: 0.5rem; color: white; font-size: 1rem; cursor: pointer; transition: background-color 0.3s; font-family: 'Times New Roman', Times, serif; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); background-color:#7695FF;" onmouseover="this.style.backgroundColor='rgb(210, 224, 251)'" onmouseout="this.style.backgroundColor='#0B2F9F'">LOGIN</button>
+                <button type="submit" style="padding: 0.5rem 1rem; border: none; border-radius: 0.5rem; color:black; font-size: 1rem; cursor: pointer; transition: background-color 0.3s; font-family: 'Times New Roman', Times, serif; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); background-color:#7695FF;" onmouseover="this.style.backgroundColor='rgb(210, 224, 251)'">LOGIN</button>
             </form>
         </div>
     </div>

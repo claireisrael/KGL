@@ -129,10 +129,10 @@ def add_stock(request, pk):
 #     return render(request, 'happy_hoe/allsales.html', {'sales': sale})
 
 
-def all_sales(request):
+def allsales(request):
     sale = Sale.objects.all().order_by('-id')
     total_expected = sum([items.get_total() or 0  for items in sale])
     total = sum([items.amount_received or 0 for items in sale])
     total_change = sum([items.get_change() or 0  for items in sale])
     net = total_expected - total
-    return render(request, 'digitalbook/all_sales.html', {'sales': sale, 'total':total, 'total_change':total_change, 'net':net, 'total_expected':total_expected})
+    return render(request, 'happy_hoe/allsales.html', {'sales': sale, 'total':total, 'total_change':total_change, 'net':net, 'total_expected':total_expected})

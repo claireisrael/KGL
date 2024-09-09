@@ -12,16 +12,20 @@
   <div class="table-container">
     <div class="card-row">
       <div class="card-item">
-        <h5>Total Amount Received</h5>
+        <h>Total Amount Received</h5>
         <p>UGX {{ total }}</p>
       </div>
       <div class="card-item">
-        <h5>Total Change Given</h5>
-        <p>UGX {{ change }}</p>
+        <h6>Total Change Given</h5>
+        <p>UGX {{total_change}}</p>
       </div>
       <div class="card-item">
-        <h5>Net Amount</h5>
-        <p>UGX {{ net_cash }}</p>
+        <h6>Total Expected</h5>
+        <p>UGX {{total_expected}}</p>
+      </div>
+      <div class="card-item">
+        <h6>Net Amount</h5>
+        <p>UGX {{net}}</p>
       </div>
     </div>
   </div>
@@ -91,7 +95,7 @@
     font-size: 0.9rem; /* Reduce font size */
   }
 
-  .card-item h5, .card-item h6 {
+  .card-item h6, .card-item h6 {
     font-family: 'Georgia', serif;
     font-weight: bold;
     color: #0B2F9F;
